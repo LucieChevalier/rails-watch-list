@@ -1,0 +1,16 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.boxofficepro.fr/wp-content/uploads/sites/2/2021/06/BESTIMAGE_00525402_000012-600x400.jpeg);">
+  <div class="container">
+    <h1>Welcome to my watch list!</h1>
+    <p>Browse the categories below...</p>
+    <%# <a class="btn btn-flat" href="#">Apply now</a> %>
+  </div>
+</div>
+
+
+<div class="cards">
+  <% @lists.each do |list| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url%>)">
+      <%= link_to list.name, list_path(list), class:"linkto" %>
+    </div>
+  <% end %>
+</div>

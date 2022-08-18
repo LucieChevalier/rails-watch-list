@@ -1,0 +1,21 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image_url%>);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+    <p>Here are my <%= @list.name %> movies!</p>
+        <%= link_to "Bookmark a movie", new_list_bookmark_path(@list), class:"linkto" %>
+  </div>
+</div>
+
+
+<div class="card-trip">
+  <% @list.movies.each do |movie| %>
+    <div class="card-product">
+      <img src="<%= movie.poster_url %>" />
+      <div class="card-product-infos">
+        <h2><%= movie.title %> - Rated <%= movie.rating %></h2>
+        <p><%= movie.overview %></p>
+        <p>Comment: <%=Bookmark.find_by(list_id: @list, movie_id: movie.id).comment %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
