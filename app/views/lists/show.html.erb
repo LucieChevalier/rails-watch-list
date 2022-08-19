@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.image_url%>);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.image.key if @list.image.attached?%>);">
   <div class="container">
     <h1><%= @list.name %></h1>
     <p>Here are my <%= @list.name %> movies!</p>
@@ -7,7 +7,6 @@
 </div>
 
 
-<div class="card-trip">
   <% @list.movies.each do |movie| %>
     <div class="card-product">
       <img src="<%= movie.poster_url %>" />
@@ -16,6 +15,20 @@
         <p><%= movie.overview %></p>
         <p>Comment: <%=Bookmark.find_by(list_id: @list, movie_id: movie.id).comment %></p>
       </div>
+      <div class="delete">
+
+        <%#= link_to '<i class="fa-solid fa-eraser"></i>',bookmark_path(@bookmark),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+      </div>
     </div>
   <% end %>
-</div>
+
+
+
+<%# # Avant Cloudinary %>
+<%#= list.image_url%>
+
+<%# Avec Cloudinary %>
+<%# Insérer une image %>
+<%#= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%# Insérer une image de background (url) %>
+<%#= cl_image_path @article.photo.key, height: 300, crop: :fill %>

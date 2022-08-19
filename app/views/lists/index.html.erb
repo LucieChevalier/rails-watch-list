@@ -9,8 +9,19 @@
 
 <div class="cards">
   <% @lists.each do |list| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image_url%>)">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.image.key if list.image.attached? %>)">
       <%= link_to list.name, list_path(list), class:"linkto" %>
     </div>
   <% end %>
 </div>
+
+<%# # Avant Cloudinary %>
+<%#= list.image_url%>
+
+<%# Avec Cloudinary %>
+<%# Insérer une image %>
+<%#= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%# Insérer une image de background (url) %>
+<%#= cl_image_path @article.photo.key, height: 300, crop: :fill %>
+
+<%# list.image.attached? #=> true/false %>
